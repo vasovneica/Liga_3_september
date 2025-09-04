@@ -164,14 +164,17 @@ $(document).ready(function () {
     });
 });
 
-$('.billboard-event-cards-div').masonry({
-    // options
-    horizontalOrder: true,
-    itemSelector: '.billboard-event-card',
-    columnWidth: 300,
-    gutter: 15,
-    isFitWidth: true
-  });
+
+
+// masonry
+// $('.billboard-event-cards-div').masonry({
+//     // options
+//     horizontalOrder: true,
+//     itemSelector: '.billboard-event-card',
+//     columnWidth: 300,
+//     gutter: 15,
+//     isFitWidth: true
+//   });
 
 // старый бургер
 
