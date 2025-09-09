@@ -46,22 +46,13 @@ const swiper = new Swiper(".swiper", {
     },
   });
 
-
-$(document).ready(function() {
-    $('#search-icon').on('click', function() {
-        $('#header-search-input').toggle(); // Переключаем видимость строки поиска
-        $('#header-search-input').focus(); // Устанавливаем фокус на строку поиска
-    });
-});
-
-
+// прелодер для слайдера
 $(document).ready(function() {
     var images = $('.swiper-slide img');
     var loadedImagesCount = 0;
   
     // Скрываем слайдер по умолчанию
     $('.swiper-container').hide();
-  
     images.each(function() {
         $(this).on('load', function() {
             loadedImagesCount++;
@@ -86,10 +77,12 @@ $(document).ready(function() {
         $('#swiper-preloader').fadeOut(1000, function() {
             $('.swiper-container').fadeIn(1500); // Показываем слайдер
         });
-    }, 5000); // Измените на 5000, если хотите показать через 5 секунд
+    }, 5000); // показать через 5 секунд
   });
 
 
+
+// демо работы сортировки мероприятии
 $(document).ready(function() {
     var dropdown = $('.billboard-dropdown-content');
     $('.billboard-sort-dropdown').on('click', function() {
@@ -113,15 +106,11 @@ $(document).ready(function() {
         $('.billboard-dropbutton-text').text('' + criteria.charAt(0).toUpperCase() + criteria.slice(1));
 
         console.log("Сортировка по:", criteria);
-        // Здесь можно добавить логику сортировки
+        
     });
 });
 
-
-
-
 // новый бургер
-
 $(document).ready(function () {
     const $header = $('.header');
     const $burger = $('.header-burger');
@@ -164,45 +153,52 @@ $(document).ready(function () {
     });
 });
 
+$(window).on('scroll', throttle(function() {
+    
+    const scrollTop = $(window).scrollTop();
+
+    if (scrollTop > 100) {
+        if (!$('.header').hasClass('scrolling')) {
+            $('.header').addClass('scrolling');
+            console.log("scroll");
+        }
+    } else {
+        if ($('.header').hasClass('scrolling')) {
+            $('.header').removeClass('scrolling');
+        }
+    }
+}, 300));
 
 
-// masonry
-// $('.billboard-event-cards-div').masonry({
-//     // options
-//     horizontalOrder: true,
-//     itemSelector: '.billboard-event-card',
-//     columnWidth: 300,
-//     gutter: 15,
-//     isFitWidth: true
-//   });
+//  появление фикс афиши при 800px и откл при достижении видеосекции
+$(window).on('scroll', throttle(function() {
+    
+    const scrollTop = $(window).scrollTop();
+    var targetBlock = $('.video-section');
+    var targetOffset = targetBlock.offset().top; // Позиция блока от верхней части страницы
+    var targetHeight = targetBlock.outerHeight(); // Высота блока
 
-// старый бургер
-
-// $(document).on('click', function(e) {
-//     // Проверяем, открыто ли меню
-//     if ($('.header').hasClass('open-nav')) {
-//         $('.header-burger').attr('aria-expanded', 'true');
-//         $('.header-menu').attr('aria-hidden', 'false');
-//         // menuLinks.forEach(link => link.setAttribute('tabindex', '0'));
-//         // Проверяем, что клик был НЕ по бургеру и НЕ внутри навигации
-//         if (!$(e.target).closest('.header-burger, .navigation').length) {
-//             $('.header').removeClass('open-nav');
-//             $('.header-burger').attr('aria-expanded', 'false');
-//             $('.header-menu').attr('aria-hidden', 'true');
-//         }
-//     }
-// });
-
-// // Оригинальный код для бургера
-// $('.header-burger').click(function(e) {
-//     e.stopPropagation(); // Предотвращаем всплытие события
-//     $('.header').toggleClass('open-nav');
-// });
-
-// // Оригинальный код для закрытия при клике на ссылку
-// $('.main_h li a').click(function() {
-//     $('.header').removeClass('open-nav');
-// });
+    if (scrollTop > 800) {
+        // Проверяем, если прокрутка меньше верхней границы целевого блока
+        if (scrollTop < (targetOffset- targetHeight)) {
+            if (!$('.afisha-fixed-wrap').hasClass('visible')) {
+                $('.afisha-fixed-wrap').addClass('visible');
+                console.log("block visible");
+            }
+        } else {
+            if ($('.afisha-fixed-wrap').hasClass('visible')) {
+                $('.afisha-fixed-wrap').removeClass('visible');
+                console.log("block hidden");
+            }
+        }
+    } else {
+        // Скрываем баннер, если прокрутка меньше 800 пикселей
+        if ($('.afisha-fixed-wrap').hasClass('visible')) {
+            $('.afisha-fixed-wrap').removeClass('visible');
+            console.log("block hidden due to scroll < 800");
+        }
+    }
+}, 1200));
 
 function throttle(func, limit) {
     let lastFunc;
@@ -224,39 +220,6 @@ function throttle(func, limit) {
         }
     }
 }
-
-// Использование:
-$(window).on('scroll', throttle(function() {
-    
-    const scrollTop = $(window).scrollTop();
-
-    if (scrollTop > 100) {
-        if (!$('.header').hasClass('scrolling')) {
-            $('.header').addClass('scrolling');
-            console.log("scroll");
-        }
-    } else {
-        if ($('.header').hasClass('scrolling')) {
-            $('.header').removeClass('scrolling');
-        }
-    }
-}, 1200));
-$(window).on('scroll', throttle(function() {
-    
-    const scrollTop = $(window).scrollTop();
-
-    if (scrollTop > 1000) {
-        if (!$('.afisha-fixed').hasClass('visible')) {
-            $('.afisha-fixed').addClass('visible');
-            console.log("block");
-        }
-    } else {
-        if ($('.afisha-fixed').hasClass('visible')) {
-            $('.afisha-fixed').removeClass('visible');
-        }
-    }
-}, 1200));
-
 
 $(document).ready(function() {
     function checkVisibility() {
@@ -288,28 +251,3 @@ $(document).ready(function() {
     checkVisibility();
 });
 
-
-
-
-
-
-
-
-
-// $(document).ready(function() {
-//     $('.about-us-achive-card-number').each(function() {
-//         var $this = $(this);
-//         var target = $this.data('target');
-        
-//         $({ countNum: $this.text()}).animate({ countNum: target }, {
-//             duration: 3000, // время анимации в миллисекундах
-//             easing: 'swing', // эффект анимации, по умолчанию 'swing'
-//             step: function() {
-//                 $this.text(Math.floor(this.countNum));
-//             },
-//             complete: function() {
-//                 $this.text(this.countNum); // установить точное значение в конце
-//             }
-//         });
-//     });
-// });
