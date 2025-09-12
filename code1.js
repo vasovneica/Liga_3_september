@@ -1,116 +1,4 @@
-// Initialize Swiper 
-
-const swiper = new Swiper(".swiper", {
-    effect: "coverflow",
-    grabCursor: true,
-    centeredSlides: true,
-    slidesPerView: 3,
-    initialSlide: 1,
-    spaceBetween: 0,
-  //   autoplay: {
-  //     delay: 5000,
-  //   },
-    speed: 600,
-  
-    coverflowEffect: {
-      rotate: 50,
-      stretch: 0,
-      depth: 100,
-      modifier: 1,
-      slideShadows: true,
-    },
-    breakpoints: {
-        320: {
-            slidesPerView: 1, // 1 слайд на экранах меньше 640px
-            spaceBetween: 0,
-        },
-        769: {
-            slidesPerView: 3, // 2 слайда на экранах от 640px до 768px
-            spaceBetween: 0,
-        },
-        1024: {
-            slidesPerView: 3, // 3 слайда на экранах больше 768px
-            spaceBetween: 0,
-        },
-    },
-    loop: true,
-  
-    keyboard: {
-      enabled: true,
-    },
-  
-    pagination: {
-      el: ".swiper-pagination",
-      dynamicBullets: true,
-      clickable: true,
-    },
-  });
-
-// прелодер для слайдера
-$(document).ready(function() {
-    var images = $('.swiper-slide img');
-    var loadedImagesCount = 0;
-  
-    // Скрываем слайдер по умолчанию
-    $('.swiper-container').hide();
-    images.each(function() {
-        $(this).on('load', function() {
-            loadedImagesCount++;
-            if (loadedImagesCount === images.length) {
-                $('#swiper-preloader').fadeOut(1000, function() {
-                    // После скрытия прелоадера показываем слайдер
-                    $('.swiper-container').fadeIn(1500); // Показываем слайдер
-                });
-            }
-        }).on('error', function() {
-            console.error('Ошибка загрузки изображения:', this.src);
-        });
-  
-        // Проверка для кэшированных изображений
-        if (this.complete) {
-            loadedImagesCount++;
-        }
-    });
-  
-    // Таймер для показа слайдера через 5 секунд
-    setTimeout(function() {
-        $('#swiper-preloader').fadeOut(1000, function() {
-            $('.swiper-container').fadeIn(1500); // Показываем слайдер
-        });
-    }, 5000); // показать через 5 секунд
-  });
-
-
-
-// демо работы сортировки мероприятии
-$(document).ready(function() {
-    var dropdown = $('.billboard-dropdown-content');
-    $('.billboard-sort-dropdown').on('click', function() {
-        dropdown.toggleClass('block'); // Переключаем класс
-
-        var arrow = $('.dropdown-arrow');
-        if (dropdown.hasClass('block')) {
-            arrow.addClass('rotate'); // Поворачиваем стрелочку вверх
-        } else {
-            arrow.removeClass('rotate'); // Поворачиваем стрелочку вниз
-        }
-    });
-    $('.sort-option').on('click', function(event) {
-        // Предотвращаем перезагрузку страницы
-        event.preventDefault();
-
-        // Получаем критерий сортировки из атрибута data-criteria
-        var criteria = $(this).data('criteria');
-
-        // Обновляем текст кнопки
-        $('.billboard-dropbutton-text').text('' + criteria.charAt(0).toUpperCase() + criteria.slice(1));
-
-        console.log("Сортировка по:", criteria);
-        
-    });
-});
-
-// новый бургер
+// ------------------------------------------------------------------новый бургер
 $(document).ready(function () {
     const $header = $('.header');
     const $burger = $('.header-burger');
@@ -121,10 +9,10 @@ $(document).ready(function () {
     $burger.on('click', function (e) {
         e.stopPropagation();
         const isOpen = $header.hasClass('open-nav');
-        
+
         // Переключаем класс
         $header.toggleClass('open-nav');
-        
+
         // Устанавливаем корректные ARIA-атрибуты
         $burger.attr('aria-expanded', !isOpen);
         $menu.attr('aria-hidden', isOpen);
@@ -153,8 +41,11 @@ $(document).ready(function () {
     });
 });
 
-$(window).on('scroll', throttle(function() {
-    
+
+
+// -------------------------------------------------------------бордер нижний хедера при скролле
+$(window).on('scroll', throttle(function () {
+
     const scrollTop = $(window).scrollTop();
 
     if (scrollTop > 100) {
@@ -170,9 +61,157 @@ $(window).on('scroll', throttle(function() {
 }, 300));
 
 
-//  появление фикс афиши при 800px и откл при достижении видеосекции
-$(window).on('scroll', throttle(function() {
-    
+
+
+// ---------------------------------------------------------Initialize Swiper 
+$(document).ready(function () {
+    try {
+        const swiper = new Swiper(".swiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 3,
+            initialSlide: 1,
+            spaceBetween: 0,
+              autoplay: {
+                delay: 5000,
+              },
+            speed: 600,
+
+            coverflowEffect: {
+                rotate: 50,
+                stretch: 0,
+                depth: 100,
+                modifier: 1,
+                slideShadows: true,
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1, // 1 слайд на экранах меньше 640px
+                    spaceBetween: 0,
+                },
+                769: {
+                    slidesPerView: 3, // 2 слайда на экранах от 640px до 768px
+                    spaceBetween: 0,
+                },
+                1024: {
+                    slidesPerView: 3, // 3 слайда на экранах больше 768px
+                    spaceBetween: 0,
+                },
+            },
+            loop: true,
+
+            keyboard: {
+                enabled: true,
+            },
+
+            pagination: {
+                el: ".swiper-pagination",
+                dynamicBullets: true,
+                clickable: true,
+            },
+        });
+    }
+    catch (error) {
+        console.error("Ошибка инициализации Swiper:", error);
+        // Можно добавить дополнительную обработку
+        // Например, показать пользователю сообщение об ошибке
+    }
+});
+
+
+
+
+//-------------------------------------------------------- прелодер для слайдера
+$(document).ready(function () {
+    try {
+        var images = $('.swiper-slide img');
+        var loadedImagesCount = 0;
+
+        // Скрываем слайдер по умолчанию
+        $('.swiper-container').hide();
+
+        try {
+            images.each(function () {
+                $(this).on('load', function () {
+                    try {
+                        loadedImagesCount++;
+                        if (loadedImagesCount === images.length) {
+                            $('#swiper-preloader').fadeOut(1000, function () {
+                                $('.swiper-container').fadeIn(1500);
+                            });
+                        }
+                    } catch (loadError) {
+                        console.error('Ошибка при обработке загрузки изображения:', loadError);
+                    }
+                }).on('error', function () {
+                    console.error('Ошибка загрузки изображения:', this.src);
+                });
+
+                // Проверка для кэшированных изображений
+                if (this.complete) {
+                    loadedImagesCount++;
+                }
+            });
+        } catch (imagesError) {
+            console.error('Ошибка при работе с изображениями:', imagesError);
+        }
+
+        // Таймер для показа слайдера через 5 секунд
+        try {
+            setTimeout(function () {
+                $('#swiper-preloader').fadeOut(1000, function () {
+                    $('.swiper-container').fadeIn(1500);
+                });
+            }, 5000);
+        } catch (timeoutError) {
+            console.error('Ошибка с таймером:', timeoutError);
+        }
+    } catch (globalError) {
+        console.error('Глобальная ошибка инициализации:', globalError);
+        // Аварийный план показа слайдера
+        $('.swiper-container').show();
+        $('#swiper-preloader').hide();
+    }
+});
+
+
+
+
+// ---------------------------------------------------------демо работы сортировки мероприятии
+$(document).ready(function () {
+    var dropdown = $('.billboard-dropdown-content');
+    $('.billboard-sort-dropdown').on('click', function () {
+        dropdown.toggleClass('block'); // Переключаем класс
+
+        var arrow = $('.dropdown-arrow');
+        if (dropdown.hasClass('block')) {
+            arrow.addClass('rotate'); // Поворачиваем стрелочку вверх
+        } else {
+            arrow.removeClass('rotate'); // Поворачиваем стрелочку вниз
+        }
+    });
+    $('.sort-option').on('click', function (event) {
+        // Предотвращаем перезагрузку страницы
+        event.preventDefault();
+
+        // Получаем критерий сортировки из атрибута data-criteria
+        var criteria = $(this).data('criteria');
+
+        // Обновляем текст кнопки
+        $('.billboard-dropbutton-text').text('' + criteria.charAt(0).toUpperCase() + criteria.slice(1));
+
+        console.log("Сортировка по:", criteria);
+
+    });
+});
+
+
+
+
+//  ------------------------------------------------появление фикс афиши при 800px и откл при достижении видеосекции
+$(window).on('scroll', throttle(function () {
+
     const scrollTop = $(window).scrollTop();
     var targetBlock = $('.video-section');
     var targetOffset = targetBlock.offset().top; // Позиция блока от верхней части страницы
@@ -180,7 +219,7 @@ $(window).on('scroll', throttle(function() {
 
     if (scrollTop > 800) {
         // Проверяем, если прокрутка меньше верхней границы целевого блока
-        if (scrollTop < (targetOffset- targetHeight)) {
+        if (scrollTop < (targetOffset - targetHeight)) {
             if (!$('.afisha-fixed-wrap').hasClass('visible')) {
                 $('.afisha-fixed-wrap').addClass('visible');
                 console.log("block visible");
@@ -200,32 +239,16 @@ $(window).on('scroll', throttle(function() {
     }
 }, 1200));
 
-function throttle(func, limit) {
-    let lastFunc;
-    let lastRan;
-    return function() {
-        const context = this;
-        const args = arguments;
-        if (!lastRan) {
-            func.apply(context, args);
-            lastRan = Date.now();
-        } else {
-            clearTimeout(lastFunc);
-            lastFunc = setTimeout(function() {
-                if ((Date.now() - lastRan) >= limit) {
-                    func.apply(context, args);
-                    lastRan = Date.now();
-                }
-            }, limit - (Date.now() - lastRan));
-        }
-    }
-}
 
-$(document).ready(function() {
+
+
+
+// -----------------------------------------------------------------появление карточек снизу
+$(document).ready(function () {
     function checkVisibility() {
-        $('.billboard-event-card, .news-card, .event-card').each(function() {
+        $('.billboard-event-card, .news-card, .event-card').each(function () {
             var $element = $(this);
-            
+
             // Если класс уже добавлен - пропускаем элемент
             if ($element.hasClass('visible')) return;
 
@@ -233,10 +256,10 @@ $(document).ready(function() {
             var elementHeight = $element.outerHeight();
             var windowTop = $(window).scrollTop();
             var windowHeight = $(window).height();
-            
+
             // Проверяем, виден ли элемент
-            var isVisible = (elementTop < windowTop + windowHeight) && 
-                            (elementTop + elementHeight > windowTop);
+            var isVisible = (elementTop < windowTop + windowHeight) &&
+                (elementTop + elementHeight > windowTop);
 
             if (isVisible) {
                 $element.addClass('visible'); // Добавляем класс только если элемент виден
@@ -246,8 +269,33 @@ $(document).ready(function() {
 
     // Вызываем checkVisibility при прокрутке и изменении размера окна
     $(window).on('scroll resize', checkVisibility);
-    
+
     // Вызываем checkVisibility один раз при загрузке, чтобы проверить видимость
     checkVisibility();
 });
+
+
+
+
+// ----------------------------------------------------------------тротлинг
+function throttle(func, limit) {
+    let lastFunc;
+    let lastRan;
+    return function () {
+        const context = this;
+        const args = arguments;
+        if (!lastRan) {
+            func.apply(context, args);
+            lastRan = Date.now();
+        } else {
+            clearTimeout(lastFunc);
+            lastFunc = setTimeout(function () {
+                if ((Date.now() - lastRan) >= limit) {
+                    func.apply(context, args);
+                    lastRan = Date.now();
+                }
+            }, limit - (Date.now() - lastRan));
+        }
+    }
+}
 
