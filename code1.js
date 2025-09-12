@@ -114,8 +114,6 @@ $(document).ready(function () {
     }
     catch (error) {
         console.error("Ошибка инициализации Swiper:", error);
-        // Можно добавить дополнительную обработку
-        // Например, показать пользователю сообщение об ошибке
     }
 });
 
@@ -298,4 +296,5 @@ function throttle(func, limit) {
         }
     }
 }
+
 
