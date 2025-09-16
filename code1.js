@@ -63,10 +63,10 @@ $(window).on('scroll', throttle(function () {
 
 
 
-// ---------------------------------------------------------Initialize Swiper 
+// ---------------------------------------------------------Initialize Swiper Main Page
 $(document).ready(function () {
     try {
-        const swiper = new Swiper(".swiper", {
+        const swiper = new Swiper('.mySwiper .swiper', {
             effect: "coverflow",
             grabCursor: true,
             centeredSlides: true,
@@ -114,6 +114,8 @@ $(document).ready(function () {
     }
     catch (error) {
         console.error("Ошибка инициализации Swiper:", error);
+        // Можно добавить дополнительную обработку
+        // Например, показать пользователю сообщение об ошибке
     }
 });
 
@@ -211,13 +213,13 @@ $(document).ready(function () {
 $(window).on('scroll', throttle(function () {
 
     const scrollTop = $(window).scrollTop();
-    var targetBlock = $('.video-section');
+    var targetBlock = $('.footer');
     var targetOffset = targetBlock.offset().top; // Позиция блока от верхней части страницы
     var targetHeight = targetBlock.outerHeight(); // Высота блока
 
     if (scrollTop > 800) {
         // Проверяем, если прокрутка меньше верхней границы целевого блока
-        if (scrollTop < (targetOffset - targetHeight)) {
+        if (scrollTop < (targetOffset - targetHeight - 220)) {
             if (!$('.afisha-fixed-wrap').hasClass('visible')) {
                 $('.afisha-fixed-wrap').addClass('visible');
                 console.log("block visible");
@@ -298,3 +300,19 @@ function throttle(func, limit) {
 }
 
 
+//--------------------------------------------------initial slider services page
+$(document).ready(function () {
+    try {
+
+        var swiper = new Swiper(".mySwiperServicesFullDetails .swiper", {
+            effect: 'slide',
+            navigation: {
+                nextEl: '.mySwiperServicesFullDetails .swiper-button-next',
+                prevEl: '.mySwiperServicesFullDetails .swiper-button-prev',
+            },
+          });
+    }
+    catch (error) {
+        console.error("Ошибка инициализации Swiper:", error);
+    }
+});
