@@ -18,7 +18,7 @@ body {
 /* ---------------------afisha-fixed----------------- */
 .afisha-fixed-wrap {
     position: fixed;
-    bottom: 50%;
+    bottom: 10%;
     right: 14%;
     z-index: 20;
     padding: 6px;
@@ -66,7 +66,7 @@ body {
 /*1024-1199px  */
 @media (max-width: 1199px) {
     .afisha-fixed-wrap {
-        bottom: 50%;
+        bottom: 10%;
         right: 1%;
     }
 }
@@ -376,6 +376,24 @@ body {
     }
 }
 
+/* Вертикальные линии  */
+.stripe-left,
+.stripe-right {
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background-color: white;
+    z-index: 20;
+}
+
+.stripe-left {
+    left: 10px;
+}
+
+.stripe-right {
+    right: 10px;
+}
+
 
 
 /* события месяца */
@@ -553,30 +571,30 @@ body {
     padding-bottom: 50px !important;
 }
 
-.swiper-slide {
+.mySwiper .swiper-slide {
     background-position: center;
     background-size: cover;
     width: 300px;
 }
 
-.swiper-3d .swiper-slide-shadow-left {
-    background-image: linear-gradient(to left, rgb(255 255 255 / 80%), rgba(0, 0, 0, 0));
+.mySwiper .swiper-3d .swiper-slide-shadow-left {
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0));
 }
 
-.swiper-3d .swiper-slide-shadow-right {
-    background-image: linear-gradient(to right, rgb(255 255 255 / 80%), rgba(0, 0, 0, 0));
+.mySwiper .swiper-3d .swiper-slide-shadow-right {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0));
 
 }
 
-.swiper-slide-prev {
+/* .mySwiper .swiper-slide-prev {
     transform: translate3d(0px, -5%, -130px) rotateX(0deg) rotateY(45deg) scale(1) !important;
 }
 
-.swiper-slide-next {
+.mySwiper .swiper-slide-next {
     transform: translate3d(0px, -5%, -130px) rotateX(0deg) rotateY(-45deg) scale(1) !important;
-}
+} */
 
-.swiper-slide-active img {
+.mySwiper .swiper-slide-active img {
     -webkit-filter: grayscale(0%);
     filter: grayscale(0%);
     transition: -webkit-filter 1.5s ease;
@@ -585,16 +603,16 @@ body {
 
 }
 
-.swiper-slide-prev .slide-card-title,
-.swiper-slide-next .slide-card-title {
+.mySwiper.swiper-slide-prev .slide-card-title,
+.mySwiper.swiper-slide-next .slide-card-title {
     color: #BBC2DC;
 }
 
-.slide-card-text-div {
+.mySwiper.slide-card-text-div {
     padding: 25px 5px 0;
 }
 
-.slide-card-title {
+.mySwiper.slide-card-title {
     margin-bottom: 25px;
     font-size: 24px;
     font-weight: 300;
@@ -602,7 +620,7 @@ body {
     color: #2A3860;
 }
 
-.slide-card-title:hover {
+.mySwiper.slide-card-title:hover {
     color: #E06053;
 }
 
@@ -1468,7 +1486,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(rgba(42, 56, 96, 0.1) 0% , rgba(42, 56, 96, 0.6) 40%, rgba(42, 56, 96, 1) 70%);
+    background: linear-gradient(rgba(42, 56, 96, 0.1) 0%, rgba(42, 56, 96, 0.6) 40%, rgba(42, 56, 96, 1) 70%);
     z-index: 1;
     border-radius: 4px;
 }
@@ -1704,11 +1722,6 @@ body {
         margin-bottom: 16px;
     }
 
-
-    .billboard-event-cards-wrap {
-        -moz-column-width: 400px;
-        column-width: 400px;
-    }
 
     .billboard-event-card {
         flex: 0 0 100%;
@@ -2539,4 +2552,481 @@ body {
 /* rotate 180 */
 .rotate {
     transform: rotate(180deg);
+}
+
+
+
+
+/* --------------------------------страница по направлениям services--------------------------------- */
+
+.services-hero {
+    margin-top: 280px;
+}
+
+.services-hero-title {
+    font-size: 64px;
+}
+
+.services-hero-subtitle {
+    font-size: 24px;
+}
+
+.services-summary-section {
+    margin-bottom: 0px;
+}
+
+.services-summary {
+    display: flex;
+    justify-content: space-between;
+    color: #2A3860;
+}
+
+.services-summary-img-wrap {
+    max-width: 43%;
+    height: 395px;
+    overflow: hidden;
+    position: relative;
+}
+
+.services-summary-img-wrap img {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.services-summary-info-wrap {
+    width: 52%;
+    margin-bottom: 15px;
+}
+.services-little-title-wrap,
+.services-little-title-wrap-desc,
+.services-little-title-wrap-mobile {
+    width: 100%;
+}
+
+.services-little-title-wrap-desc {
+    display: flex;
+}
+
+.services-little-title-wrap-mobile {
+    display: none;
+}
+
+.services-summary-adress-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 40px;
+}
+
+.services-summary-red-button {
+    font-size: 16px;
+    min-width: 285px;
+    padding: 10px 35px;
+}
+
+.services-summary-adress {
+    text-align: left;
+    font-size: 20px;
+    line-height: 130%;
+    margin: 0 20px;
+}
+
+
+/*блок список с кратким описанием деятельности */
+
+.services-summary-products h3 {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 100%;
+    margin-bottom: 6px;
+}
+
+.services-summary-products ul {
+    margin-bottom: 30px;
+}
+
+.services-summary-products li {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%;
+    color: #6A7887;
+}
+
+/* adaptive */
+
+/* 1200-1599px */
+@media (max-width: 1599px) {
+    .services-summary-img-wrap {
+        max-width: 38%;
+
+    }
+
+    .services-summary-info-wrap {
+        width: 60%;
+    }
+}
+
+/* 1024-1199px */
+@media (max-width: 1199px) {
+    .services-summary {
+        flex-direction: column;
+    }
+
+    .services-hero-title {
+        font-size: 40px;
+    }
+
+    .services-little-title-wrap-desc {
+        display: none;
+    }
+
+    .services-little-title-wrap-mobile {
+        display:flex;
+    }
+
+    .services-summary-img-wrap {
+        max-width: 100%;
+        margin-bottom: 40px;
+
+    }
+
+    .services-summary-info-wrap {
+        width: 100%;
+    }
+
+    .services-summary-adress {
+        width: 80%;
+    }
+
+   
+}
+ /* 769-1023px */
+ @media (max-width: 1023px) {
+    .services-hero-title {
+        font-size: 33px;
+    }
+
+    .services-hero-subtitle {
+        font-size: 20px;
+    }
+}
+
+/* 481-768px */
+@media (max-width: 768px) {
+    .services-hero-title {
+        font-size: 55px;
+    }
+
+    .services-hero-subtitle {
+        margin-bottom: 0;
+    }
+
+    .services-summary-adress-wrap {
+        flex-direction: column;
+    }
+
+    .services-summary-red-button {
+        margin-bottom: 16px;
+        width: 100%;
+        min-width: 270px;
+    }
+
+    .services-summary-adress {
+        margin: 0;
+    }
+}
+
+/* mobile */
+@media (max-width: 480px) {
+    .services-hero-title {
+        font-size: 33px;
+    }
+}
+
+
+/* блок со слайдером и полным описанием деятельности */
+
+.services-full-details-section {
+    margin-bottom: 15px;
+}
+
+.services-full-details-section:last-child {
+   margin-bottom: 120px;
+}
+/* slider services page */
+.services-full-details-slider-wrap {
+    position: relative;
+    height: 605px;
+}
+
+.mySwiperServicesFullDetails .swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.mySwiperServicesFullDetails .swiper-slide {
+    border-radius: 8px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 18px;
+    background: #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mySwiperServicesFullDetails .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.mySwiperServicesFullDetails .swiper-button-next:after,
+.mySwiperServicesFullDetails .swiper-button-prev:after {
+    content: '';
+    width: 40px;
+    height: 40px;
+    background-image: url("./images/icons/arrow-square-right.svg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    display: block;
+}
+
+.mySwiperServicesFullDetails .swiper-button-prev:after {
+    transform: rotate(180deg);
+}
+
+/* Иконка стрелки — SVG внутри */
+.mySwiperServicesFullDetails .swiper-button-next,
+.mySwiperServicesFullDetails .swiper-button-prev {
+    width: 40px;
+    height: 40px;
+}
+
+.mySwiperServicesFullDetails .swiper-button-prev {
+    left: 5%;
+}
+
+.mySwiperServicesFullDetails .swiper-button-next {
+    right: 5%;
+}
+
+.services-full-details-info-wrap {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    color: #6A7887;
+}
+
+.services-full-details-contacts {
+    display: flex;
+    flex-direction: column;
+}
+
+.services-full-details-wrap {
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.services-full-details-contacts-img-wrap {
+    padding-top: 6px;
+    margin-right: 25px;
+    height: 40px;
+    width: 40px;
+}
+
+.services-full-details-contacts-img-wrap img {
+    height: 100%;
+    width: 100%;
+}
+
+.services-full-details-title {
+    line-height: 150%;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.services-full-details-ul {}
+
+.services-full-details-ul li,
+.services-full-details-ul li a {
+    color: #6A7887;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+.services-full-details-text-wrap {
+    width: 65%;
+}
+
+.services-full-details-text-wrap p {
+    font-weight: 400;
+    line-height: 150%;
+}
+
+/* adaptive */
+
+/* 1024-1199px */
+@media (max-width: 1199px) {
+
+    .services-full-details-section .stripe-left {
+       left: 6px;
+    }
+    .services-full-details-section .stripe-right {
+        right: 6px;
+     }
+     .mySwiperServicesFullDetails .swiper-button-prev {
+        left: 2%;
+    }
+    
+    .mySwiperServicesFullDetails .swiper-button-next {
+        right: 2%;
+    }
+    .services-full-details-info-wrap {
+        flex-direction: column-reverse;
+    }
+
+    .services-full-details-text-wrap {
+        margin-bottom: 40px;
+    }
+
+    .services-full-details-wrap:first-child {
+        margin-right: 40px;
+    }
+
+    .services-full-details-contacts {
+        flex-direction: row;
+    }
+
+}
+
+/* 769-1023px */
+@media (max-width: 1023px) {
+    .services-full-details-text-wrap {
+        width: 90%;
+    }
+}
+
+/* 481-768px */
+@media (max-width: 768px) {
+
+    .services-full-details-text-wrap {
+        width: 100%;
+
+    }
+
+    .services-full-details-wrap:first-child {
+        margin-right: 0px;
+    }
+
+    .services-full-details-contacts {
+        flex-direction: column;
+    }
+}
+
+/* aside cards */
+.aside-cards-section {
+    margin-bottom: 90px;
+}
+
+.aside-cards-wrap {
+    margin-bottom: 0;
+    max-width: 100%;
+}
+
+.aside-card {
+    position: relative;
+    width: 327px;
+    flex: 0 0 calc(25% - 12px);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-radius: 4px;
+    color: #6A7887;
+
+}
+
+.aside-card:hover .aside-card-title {
+    color: #E06053;
+
+}
+
+.aside-card a {
+    color: inherit;
+}
+
+.aside-card-img-wrap {
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+    border-radius: 4px;
+    margin-bottom: 30px;
+}
+
+.aside-card-img-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.aside-card-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.aside-card:hover .aside-card-img {
+    transform: scale(1.05);
+}
+
+.aside-card-title {
+    font-size: 22px;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.aside-card-text {
+    font-size: 16;
+    font-weight: 400;
+}
+
+/* adaptive */
+
+/* 769-1023px */
+@media (max-width: 1023px) {
+    .aside-cards-wrap {
+        row-gap: 30px;
+    }
+
+    .aside-card {
+        flex: 0 0 calc(50% - 8px);
+    }
+}
+
+/* 641-768px */
+@media (max-width: 768px) {}
+
+/*481-600px  */
+@media (max-width: 640px) {
+    .aside-card {
+        flex: 0 0 100%;
+    }
+}
+
+
+
+/* добавить в раздел css buttons / decor / etc/*/
+/* линия для заголовка без текста */
+.decore-line-with-pattern {
+    border-top: 1px solid #2A385F;
 }
