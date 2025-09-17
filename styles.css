@@ -608,11 +608,11 @@ body {
     color: #BBC2DC;
 }
 
-.mySwiper.slide-card-text-div {
+.mySwiper .slide-card-text-div {
     padding: 25px 5px 0;
 }
 
-.mySwiper.slide-card-title {
+.mySwiper .slide-card-title {
     margin-bottom: 25px;
     font-size: 24px;
     font-weight: 300;
@@ -620,7 +620,7 @@ body {
     color: #2A3860;
 }
 
-.mySwiper.slide-card-title:hover {
+.mySwiper .slide-card-title:hover {
     color: #E06053;
 }
 
