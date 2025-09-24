@@ -274,7 +274,52 @@ $(document).ready(function () {
     checkVisibility();
 });
 
+//----------------------------------------------------------------видео плеер
 
+$(document).ready(function() {
+    const $video = $('#main-page-video');
+    const $playButton = $('#main-page-video-play-button');
+
+    // Проверка существования элементов
+    if ($video.length === 0 || $playButton.length === 0) {
+        console.error('Video or play button not found.');
+        return;
+    }
+
+    // Скрываем стандартные элементы управления
+   $video.prop('controls', false);
+
+    // Обработчик события для кнопки воспроизведения
+    $playButton.on('click', function() {
+        if ($video[0].paused) {
+            $video[0].play().catch(error => {
+                console.error('Error trying to play the video:', error);
+            });
+            $playButton.hide(); // Скрываем кнопку после нажатия
+        } else {
+            $video[0].pause();
+            $playButton.show(); // Показываем кнопку, если видео приостановлено
+        }
+    });
+
+    // Показываем кнопку, если видео приостановлено
+    $video.on('pause', function() {
+        $playButton.show();
+    });
+
+    // Скрываем кнопку, если видео воспроизводится
+    $video.on('play', function() {
+        $playButton.hide();
+    });
+
+    // Добавляем обработчик события для  клика на видео
+    $video.on('click', function() {
+        if (!$video[0].paused) {
+            $video[0].pause();
+            $playButton.show(); // Показываем кнопку при приостановке
+        }
+    });
+});
 
 
 // ----------------------------------------------------------------тротлинг
@@ -316,3 +361,4 @@ $(document).ready(function () {
         console.error("Ошибка инициализации Swiper:", error);
     }
 });
+
