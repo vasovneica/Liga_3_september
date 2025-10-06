@@ -2837,7 +2837,11 @@ position: absolute;
 .mySwiperServicesFullDetails .swiper-button-next {
     right: 5%;
 }
-
+.section-full-details-title {
+    font-size: 42px;
+    color: #6B7888;
+    border-bottom: 0px;
+}
 .services-full-details-info-wrap {
     display: flex;
     justify-content: space-between;
@@ -3052,3 +3056,4 @@ position: absolute;
     border-top: 1px solid #2A385F;
 
 }
+
